@@ -1,4 +1,4 @@
-# How to Fish — Trainer
+# How to Fish - Trainer
 
 A trainer for **How to Fish** (Unity/Mono). Patches the game's DLL, gives you an in-game menu on **F7**.
 
@@ -36,26 +36,26 @@ Then launch, hit **F7**. Everything's off by default, turn on what you want. Set
 
 ## What's in it
 
-**Aim** — aimbot that only kicks in when you're ADS with a gun. Actually leads moving targets: solves
+**Aim** - aimbot that only kicks in when you're ADS with a gun. Actually leads moving targets: solves
 the interception point from the weapon's real muzzle velocity + gravity. Filter by sea creatures /
 seagulls / bosses. Auto-fire holds off when a friend walks into your line.
 
-**MLG** — one keybind (**V**) does the whole trick shot: drops ADS, jumps, spins a 360, snaps onto the
+**MLG** - one keybind (**V**) does the whole trick shot: drops ADS, jumps, spins a 360, snaps onto the
 predicted spot, fires. Stacks the game's own bonuses (360, no-scope, longshot, headshot, aerial,
 dogfight, last bullet) and tells you what it scored. Can target players too if you want to be a menace.
 
-**Weapon** — unlimited ammo, no reload, no recoil, no spread, fire rate, damage, punch damage.
+**Weapon** - unlimited ammo, no reload, no recoil, no spread, fire rate, damage, punch damage.
 
-**Move** — speed, jump height, infinite jump.
+**Move** - speed, jump height, infinite jump.
 
-**ESP** — CS2-style boxes off the real hitboxes. Creatures, loose loot, players, boss HP + timer.
+**ESP** - CS2-style boxes off the real hitboxes. Creatures, loose loot, players, boss HP + timer.
 Gold = drip, red = boss, cyan = bird, green = whatever you're locked onto.
 
-**World** — instant bite, max fish weight, perfect cook (money printer), drip odds, unlimited health/food.
+**World** - instant bite, max fish weight, perfect cook (money printer), drip odds, unlimited health/food.
 
-**Casino** — always win roulette (bet green, 35x), rig the slot machine, free money.
+**Casino** - always win roulette (bet green, 35x), rig the slot machine, free money.
 
-**Fun** — headshot everyone at once, launch everyone into orbit, kill all creatures, kill the boss,
+**Fun** - headshot everyone at once, launch everyone into orbit, kill all creatures, kill the boss,
 god mode, one-shot mode, island warp, chat, and the game's own dev console.
 
 ## Host only vs not
@@ -65,7 +65,7 @@ Some stuff is server-side, so it only works when **you're hosting**:
 - unlimited health / food, drip odds, instant bite, fish weight, perfect cook
 - casino rigging, free money, god mode, one-shot, island warp, dev console
 
-Everything else works fine as a client, because the game trusts the shooter's machine for damage —
+Everything else works fine as a client, because the game trusts the shooter's machine for damage -
 aimbot, MLG, ESP, weapon damage, recoil, punch, movement, killing creatures, and yeeting players
 (that last one needs friendly fire on, which the host toggles).
 
@@ -83,7 +83,7 @@ Patching adds **7 calls** to `Assembly-CSharp.dll`, nothing else:
 | `CasinoManager.ServerRouletteResult` | rig the roulette |
 | `KillScoreCalculator.GetMultiplier` | override score multiplier |
 
-No Harmony, no BepInEx, no runtime patching lib — the payload is **one DLL** with zero third-party
+No Harmony, no BepInEx, no runtime patching lib - the payload is **one DLL** with zero third-party
 deps. Unpatch restores the original byte-for-byte (backed up as `.htfbak`).
 
 Couple of things that took some digging:
@@ -95,7 +95,7 @@ Couple of things that took some digging:
   100m.
 - Fish thrash around, so leading them off raw velocity sends the shot into empty water. It tracks
   ~0.3s of movement and damps the lead when the target's being erratic.
-- MLG bonuses are scored **on impact**, not when you fire — so the jump and spin have to still be
+- MLG bonuses are scored **on impact**, not when you fire - so the jump and spin have to still be
   valid when the bullet lands.
 
 ## Layout
