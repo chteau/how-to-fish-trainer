@@ -10,25 +10,41 @@ Aimbot with real ballistics, MLG trick shots, ESP, casino rigging, and a bunch o
 
 ## Build
 
-Needs the .NET 8 SDK. That's it.
+Needs the .NET 8 SDK. That's it. Works on Windows, Linux and macOS.
 
+**Windows**
+```powershell
+.\build.ps1
+```
+
+**Linux / macOS**
 ```bash
 ./build.sh
 ```
 
-Grabs the game's DLLs into `lib/`, builds, drops everything in `dist/`.
+Finds your Steam install (reads `libraryfolders.vdf`, so other drives work too), grabs the game's
+DLLs into `lib/`, builds, drops everything in `dist/`.
 
 ## Use
 
 Close the game first.
 
-```bash
-./dist/htf patch      # inject
-./dist/htf status     # am i patched?
-./dist/htf unpatch    # put it back exactly how it was
+**Windows**
+```
+dist\htf.cmd patch      :: inject
+dist\htf.cmd status     :: am i patched?
+dist\htf.cmd unpatch    :: put it back exactly how it was
 ```
 
-Game somewhere else? `--game /path/to/How to Fish`.
+**Linux / macOS**
+```bash
+./dist/htf patch
+./dist/htf status
+./dist/htf unpatch
+```
+
+Game on another drive and it can't find it? Pass it:
+`--game "D:\SteamLibrary\steamapps\common\How to Fish\How to Fish"`
 
 Then launch, hit **F7**. Everything's off by default, turn on what you want. Settings save automatically.
 

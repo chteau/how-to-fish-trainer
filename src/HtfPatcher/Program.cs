@@ -11,7 +11,7 @@ namespace HtfPatcher
             try
             {
                 var command = args.Length > 0 ? args[0].ToLowerInvariant() : "help";
-                var gameDir = Option(args, "--game") ?? Paths.DefaultGameDir();
+                var gameDir = Option(args, "--game");
                 var payloadDir = Option(args, "--payload") ?? AppContext.BaseDirectory;
 
                 switch (command)
@@ -19,6 +19,7 @@ namespace HtfPatcher
                     case "patch": return Patch(gameDir, payloadDir);
                     case "unpatch": return Unpatch(gameDir);
                     case "status": return Status(gameDir, payloadDir);
+                    case "refs": return Refs(gameDir, Option(args, "--out") ?? "lib");
                     case "help" or "--help" or "-h": Usage(); return 0;
                     default:
                         Console.Error.WriteLine($"unknown command: {command}");
@@ -46,17 +47,18 @@ namespace HtfPatcher
                   patch     inject the trainer into Assembly-CSharp.dll (backs it up first)
                   unpatch   restore the original Assembly-CSharp.dll and remove trainer files
                   status    report whether the game is currently patched
+                  refs      copy the assemblies the trainer builds against into a folder
 
                 Options:
-                  --game <dir>      game folder (default: the Steam install path)
-                  --payload <dir>   folder holding HtfTrainer.dll and its dependencies
-                                    (default: next to this program)
+                  --game <dir>      game folder (default: found automatically via Steam)
+                  --payload <dir>   folder holding HtfTrainer.dll (default: next to this program)
+                  --out <dir>       destination for 'refs' (default: lib)
 
                 Close the game before patching or unpatching.
                 """);
         }
 
-        private static int Patch(string gameDir, string payloadDir)
+        private static int Patch(string? gameDir, string payloadDir)
         {
             var paths = Paths.Resolve(gameDir);
             Console.WriteLine($"game:    {paths.GameDir}");
@@ -107,7 +109,7 @@ namespace HtfPatcher
             return 0;
         }
 
-        private static int Unpatch(string gameDir)
+        private static int Unpatch(string? gameDir)
         {
             var paths = Paths.Resolve(gameDir);
             var restored = false;
@@ -143,7 +145,7 @@ namespace HtfPatcher
             return 0;
         }
 
-        private static int Status(string gameDir, string payloadDir)
+        private static int Status(string? gameDir, string payloadDir)
         {
             var paths = Paths.Resolve(gameDir);
             var patched = Injector.IsPatched(paths.Assembly);
@@ -157,6 +159,40 @@ namespace HtfPatcher
 
             var built = Paths.Payload.Count(n => File.Exists(Path.Combine(payloadDir, n)));
             Console.WriteLine($"payload: {built}/{Paths.Payload.Length} available in {payloadDir}");
+            return 0;
+        }
+
+        /// <summary>
+        /// Vendors the game's assemblies so the trainer can compile against them. Prefers the pristine
+        /// backup, because Roslyn refuses a dnlib-written assembly as a reference ("invalid public
+        /// key") and building against a patched one would be wrong anyway.
+        /// </summary>
+        private static int Refs(string? gameDir, string outDir)
+        {
+            var paths = Paths.Resolve(gameDir);
+            Directory.CreateDirectory(outDir);
+
+            var copied = 0;
+            var missing = new List<string>();
+
+            foreach (var name in Paths.ReferenceAssemblies)
+            {
+                var source = Path.Combine(paths.ManagedDir, name);
+
+                if (name == Paths.TargetAssembly && File.Exists(paths.Backup))
+                    source = paths.Backup;
+
+                if (!File.Exists(source)) { missing.Add(name); continue; }
+
+                File.Copy(source, Path.Combine(outDir, name), overwrite: true);
+                copied++;
+            }
+
+            if (missing.Count > 0)
+                throw new PatchException($"missing game assemblies: {string.Join(", ", missing)}");
+
+            Console.WriteLine($"game: {paths.GameDir}");
+            Console.WriteLine($"refs: copied {copied} assemblies into {outDir}");
             return 0;
         }
 
