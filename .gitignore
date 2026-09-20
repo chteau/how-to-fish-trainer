@@ -1,0 +1,15 @@
+# build output
+bin/
+obj/
+dist/
+
+# Game assemblies copied in by build.sh. These are the game's property —
+# never commit them. build.sh regenerates lib/ from your own install.
+lib/
+
+# editors
+.vs/
+.idea/
+*.user
+*.suo
+*.swp

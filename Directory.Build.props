@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <GameDir Condition="'$(GameDir)'==''">$(HOME)/.local/share/Steam/steamapps/common/How to Fish/How to Fish</GameDir>
+    <!-- Reference assemblies are vendored into lib/ by build.sh, taken from the pristine backup.
+         Compiling straight from Managed/ would bind against a patched Assembly-CSharp. -->
+    <GameManaged>$(MSBuildThisFileDirectory)lib</GameManaged>
+    <LangVersion>latest</LangVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+</Project>
