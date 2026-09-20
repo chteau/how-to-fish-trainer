@@ -41,7 +41,7 @@ namespace HtfPatcher
         private static void Usage()
         {
             Console.WriteLine("""
-                How to Fish — trainer patcher
+                How to Fish - trainer patcher
 
                   patch     inject the trainer into Assembly-CSharp.dll (backs it up first)
                   unpatch   restore the original Assembly-CSharp.dll and remove trainer files
@@ -72,7 +72,7 @@ namespace HtfPatcher
 
             if (Injector.IsPatched(paths.Assembly))
             {
-                Console.WriteLine("already patched — run 'unpatch' first if you want to re-apply.");
+                Console.WriteLine("already patched - run 'unpatch' first if you want to re-apply.");
                 return 0;
             }
 

@@ -10,13 +10,13 @@ namespace HtfTrainer
     /// so a single instant can point anywhere and the solver then leads the shot into empty water.
     /// This keeps a ~0.3s window of positions and derives two things from it:
     ///
-    ///   velocity     — averaged over the window, which filters the per-frame jitter
-    ///   straightness — |average velocity| / average speed, in 0..1
+    ///   velocity     - averaged over the window, which filters the per-frame jitter
+    ///   straightness - |average velocity| / average speed, in 0..1
     ///
     /// Straightness is the useful part. A fish swimming in a line scores near 1; one thrashing in
     /// place scores near 0, because the displacements cancel out while the distance travelled does
     /// not. Scaling the lead by it collapses the prediction toward the target's current position
-    /// exactly when its motion is unpredictable — which is the correct estimate for random movement.
+    /// exactly when its motion is unpredictable - which is the correct estimate for random movement.
     /// </summary>
     internal static class Motion
     {

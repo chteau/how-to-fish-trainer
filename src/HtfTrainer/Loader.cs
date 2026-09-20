@@ -25,7 +25,7 @@ namespace HtfTrainer
                 host.hideFlags = HideFlags.HideAndDontSave;
                 host.AddComponent<TrainerBehaviour>();
 
-                Log.Info($"loaded — press {Cfg.MenuKey} for the menu, {Cfg.MlgKey} for MLG");
+                Log.Info($"loaded - press {Cfg.MenuKey} for the menu, {Cfg.MlgKey} for MLG");
             }
             catch (Exception e)
             {

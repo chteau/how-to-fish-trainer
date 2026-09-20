@@ -6,7 +6,7 @@ namespace HtfTrainer
     /// <summary>
     /// Drip odds live in CreatureManager._shinyCreatureChance and are rolled in HookItem as
     /// Random.Range(0, 100) &lt; chance, on the server only. Setting it to 50 therefore gives a true
-    /// 50/50 between a normal and a drip catch — and, like the vitals options, only works when hosting.
+    /// 50/50 between a normal and a drip catch - and, like the vitals options, only works when hosting.
     /// </summary>
     internal static class Drip
     {

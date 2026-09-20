@@ -8,7 +8,7 @@ namespace HtfTrainer
     /// Ammo, reload, rate of fire, spread and knockback on the weapon in hand.
     ///
     /// Two related things are handled elsewhere because they are not weapon fields: damage is scaled
-    /// at Attachments.Damage, and the camera kick is zeroed at PlayerCamera.Recoil — both by injected
+    /// at Attachments.Damage, and the camera kick is zeroed at PlayerCamera.Recoil - both by injected
     /// hooks, since the projectile reads its damage at spawn and the kick is applied to the camera
     /// rather than stored on the gun.
     /// </summary>

@@ -64,7 +64,7 @@ namespace HtfTrainer
                                       Held.ProjSpeed, Held.Gravity, Time.fixedDeltaTime,
                                       out solved, out tof))
                 {
-                    // Unreachable with this weapon — drop it and look for something else.
+                    // Unreachable with this weapon - drop it and look for something else.
                     Target = null;
                     return false;
                 }

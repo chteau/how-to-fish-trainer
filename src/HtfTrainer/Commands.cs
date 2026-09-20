@@ -4,7 +4,7 @@ namespace HtfTrainer
     /// Chat and the game's built-in developer console.
     ///
     /// Server.SendChatMessage is a ServerRpc with RequireOwnership off, so a plain client can post a
-    /// message everyone sees. DazedCommands.IsServerCommand is the game's own command parser — it
+    /// message everyone sees. DazedCommands.IsServerCommand is the game's own command parser - it
     /// needs ClientSettings.CheatsEnabled (public static) and the host, and covers spawning items,
     /// skins, islands, achievements and more.
     /// </summary>

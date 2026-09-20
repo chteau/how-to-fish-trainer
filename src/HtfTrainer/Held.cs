@@ -82,7 +82,7 @@ namespace HtfTrainer
         /// Converts a desired *bullet* direction into the camera direction that produces it.
         ///
         /// This matters more than it sounds. Weapon.Shoot launches along _attachments.FirePoint.forward
-        /// — the barrel — while the aimbot can only steer the camera. The barrel carries ADS offset,
+        /// - the barrel - while the aimbot can only steer the camera. The barrel carries ADS offset,
         /// sway, bob and the recoil rig, so it sits at a small angle to the camera, and that angle
         /// becomes a miss of distance x tan(angle): harmless at 10m, over a metre at 100m. Undoing the
         /// offset here is what makes long shots land.

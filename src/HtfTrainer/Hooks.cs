@@ -9,7 +9,7 @@ namespace HtfTrainer
     /// Using IL injection rather than a runtime patching library keeps the trainer dependency-free:
     /// Harmony drags in MonoMod and Mono.Cecil, which in turn reference System.Reflection.Emit
     /// facades that this game's Managed folder does not ship and its netstandard.dll does not
-    /// forward — so Harmony cannot construct a patch here at all.
+    /// forward - so Harmony cannot construct a patch here at all.
     /// </summary>
     public static class Hooks
     {

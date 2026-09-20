@@ -34,7 +34,7 @@ namespace HtfTrainer
 
         /// <summary>
         /// Lands a simultaneous headshot on everyone else. Damage is reported by our client the same
-        /// way a real shot is, so this works without hosting — but PlayerVitals.LocalHit drops the
+        /// way a real shot is, so this works without hosting - but PlayerVitals.LocalHit drops the
         /// damage entirely when friendly fire is off, which only the host can change.
         /// </summary>
         internal static void HeadshotEveryone(int damage)
@@ -44,7 +44,7 @@ namespace HtfTrainer
 
             if (!FriendlyFireOn)
             {
-                LastAction = "friendly fire is off — no damage will apply";
+                LastAction = "friendly fire is off - no damage will apply";
                 return;
             }
 
@@ -70,7 +70,7 @@ namespace HtfTrainer
 
             if (!FriendlyFireOn)
             {
-                LastAction = "friendly fire is off — launch needs it on";
+                LastAction = "friendly fire is off - launch needs it on";
                 return;
             }
 

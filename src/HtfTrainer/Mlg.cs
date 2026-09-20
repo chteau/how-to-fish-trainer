@@ -17,7 +17,7 @@ namespace HtfTrainer
     ///
     /// Targets may be creatures or players. Projectiles damage players through the same path
     /// (ProjectileManager.Hit resolves the body part and calls PlayerVitals.LocalHit with
-    /// rangedHit: true), so player trick shots score real bonuses — though the player bonus list has
+    /// rangedHit: true), so player trick shots score real bonuses - though the player bonus list has
     /// no headshot entry, and friendly fire must be on for the damage to land at all.
     /// </summary>
     internal static class Mlg
@@ -271,7 +271,7 @@ namespace HtfTrainer
                 Vector3.Distance(Target.Transform.position, player.CamObject.position) >= PlayerSkills.LongshotDistance)
                 list.Add("Longshot");
 
-            // Players earn no headshot or endangered bonus — GetRangedPlayerBonuses has neither.
+            // Players earn no headshot or endangered bonus - GetRangedPlayerBonuses has neither.
             if (!Target.IsPlayer)
             {
                 if (Cfg.AimAtHead && !Target.Erratic) list.Add("Headshot");

@@ -103,7 +103,7 @@ namespace HtfTrainer
 
         /// <summary>
         /// Point to shoot for a headshot bonus. The game credits a headshot when the hit, expressed in
-        /// the creature's local space, has z greater than Creature.HeadPos — so aim between that
+        /// the creature's local space, has z greater than Creature.HeadPos - so aim between that
         /// threshold and the front-most extent of the hitboxes rather than at the threshold itself.
         /// </summary>
         internal static Vector3 AimPoint(Creature c, bool preferHead)

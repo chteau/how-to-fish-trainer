@@ -4,7 +4,7 @@ namespace HtfTrainer
 {
     /// <summary>
     /// A small immediate-mode widget set drawn entirely from solid rectangles, so nothing depends on
-    /// Unity's default IMGUI skin — that skin is a translucent grey and is effectively invisible over
+    /// Unity's default IMGUI skin - that skin is a translucent grey and is effectively invisible over
     /// bright water. Corners are square throughout: it reads as deliberate rather than unfinished.
     /// </summary>
     internal static class Ui

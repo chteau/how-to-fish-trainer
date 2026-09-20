@@ -215,7 +215,7 @@ namespace HtfTrainer
         private static string StatusLine()
         {
             if (Mlg.Running) return "MLG: " + Mlg.State;
-            if (AutoFire.Blocked) return "auto fire held — player in the line of fire";
+            if (AutoFire.Blocked) return "auto fire held - player in the line of fire";
             if (Aimbot.Target != null)
                 return "target: " + SafeName(Aimbot.Target) + (Aimbot.IsLocked ? "  ·  on target" : "  ·  tracking");
             if (Mlg.LastResult.Length > 0) return "last MLG: " + Mlg.LastResult;
@@ -284,7 +284,7 @@ namespace HtfTrainer
                     ? $"table is backing {bet.Value}  ·  pot {Casino.TotalWorth}"
                     : "no bet placed",
                  Ui.AccentDim);
-            Note("Green pays 35x, red and black pay 2x — bet green with this on.", Ui.LineSoft);
+            Note("Green pays 35x, red and black pay 2x - bet green with this on.", Ui.LineSoft);
 
             Section("Slot machine" + (host ? "" : "  (host only)"));
             var slots = ActionPair("RIG LEGENDARY", "RIG RARE", host);
@@ -306,7 +306,7 @@ namespace HtfTrainer
             var ff = Fun.FriendlyFireOn;
 
             Section("Players");
-            Note(ff ? "friendly fire is ON" : "friendly fire is OFF — player pranks do nothing",
+            Note(ff ? "friendly fire is ON" : "friendly fire is OFF - player pranks do nothing",
                  ff ? Ui.Good : Ui.Warn);
             if (Action("HEADSHOT EVERYONE", ff)) Fun.HeadshotEveryone(1000);
             if (Action("LAUNCH EVERYONE", ff)) Fun.LaunchEveryone(Cfg.LaunchForce);
@@ -428,7 +428,7 @@ namespace HtfTrainer
             {
                 var straight = Motion.Straightness(Aimbot.Target);
                 Note($"target motion: {straight * 100f:0}% steady" +
-                     (straight < Motion.ErraticBelow ? "  — lead damped" : ""),
+                     (straight < Motion.ErraticBelow ? "  - lead damped" : ""),
                      straight < Motion.ErraticBelow ? Ui.Warn : Ui.Good);
             }
 
@@ -436,7 +436,7 @@ namespace HtfTrainer
             if (Held.HasFirearm)
             {
                 Note(Held.IsHitScan
-                        ? "hitscan weapon — no lead or drop needed"
+                        ? "hitscan weapon - no lead or drop needed"
                         : $"muzzle {Held.ProjSpeed:0} u/s  ·  gravity {Held.Gravity:0.#}" +
                           (Aimbot.TravelTime > 0f ? $"  ·  flight {Aimbot.TravelTime:0.00}s" : ""),
                      Ui.AccentDim);
@@ -587,7 +587,7 @@ namespace HtfTrainer
 
             Section("Status");
             if (host)
-                Note($"hosting — drip is {Drip.CurrentChance}% on every catch", Ui.Good);
+                Note($"hosting - drip is {Drip.CurrentChance}% on every catch", Ui.Good);
             else
                 Note("These are server-side: health, food and drip only apply when you host the lobby.",
                      Ui.Warn);

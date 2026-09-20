@@ -7,7 +7,7 @@ namespace HtfTrainer
     /// Catch rate and item value. All server-side, so host-only.
     ///
     /// Item.TotalWorth is _worth * randomWeight * CooknessCurve(cookness) * bettingMultiplier *
-    /// killScoreMultiplier, and the first three are plain SyncVars — so inflating weight and parking
+    /// killScoreMultiplier, and the first three are plain SyncVars - so inflating weight and parking
     /// cookness on the curve's peak is the whole money cheat.
     /// </summary>
     internal static class Fishing

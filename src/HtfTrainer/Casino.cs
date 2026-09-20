@@ -6,7 +6,7 @@ namespace HtfTrainer
     /// <summary>
     /// Roulette and slot machine rigging. Both run on the server, so both are host-only.
     ///
-    /// The roulette is decided by physics rather than a dice roll — LocalCasino watches where the
+    /// The roulette is decided by physics rather than a dice roll - LocalCasino watches where the
     /// ball settles and hands the colour to CasinoManager.ServerRouletteResult. Rather than fight the
     /// ball, the patcher rewrites that method's argument, so only the payout decision changes and the
     /// wheel still looks and sounds exactly as it should.
@@ -57,7 +57,7 @@ namespace HtfTrainer
 
         /// <summary>
         /// Arms the game's own slot cheat with a legendary skin, so the next pull is a guaranteed win.
-        /// SlotMachineManager already supports this — it is how the dev "/slots" command works.
+        /// SlotMachineManager already supports this - it is how the dev "/slots" command works.
         /// </summary>
         internal static void RigSlots(Rarity rarity)
         {

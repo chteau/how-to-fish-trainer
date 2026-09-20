@@ -10,7 +10,7 @@ namespace HtfPatcher;
 ///
 /// A runtime patching library was the obvious alternative, but Harmony pulls in MonoMod and
 /// Mono.Cecil, and those reference System.Reflection.Emit facades that this game's Managed folder
-/// does not ship and its netstandard.dll does not forward — Harmony throws a TypeLoadException
+/// does not ship and its netstandard.dll does not forward - Harmony throws a TypeLoadException
 /// before it can build a single patch. Injecting the calls up front sidesteps that entirely.
 /// </summary>
 internal static class Injector
@@ -53,7 +53,7 @@ internal static class Injector
         File.Move(temp, assemblyPath, overwrite: true);
     }
 
-    /// <summary>GameInfo.Awake runs once, early, on every launch — the natural place to start up.</summary>
+    /// <summary>GameInfo.Awake runs once, early, on every launch - the natural place to start up.</summary>
     private static void InjectLoader(ModuleDefMD module, TrainerRefs refs)
     {
         var body = RequireMethod(module, "GameInfo", "Awake").Body;
@@ -72,7 +72,7 @@ internal static class Injector
         var method = RequireMethod(module, "PlayerAimAssist", "GetRotationDelta");
         if (method.MethodSig.Params.Count != 3)
             throw new PatchException(
-                $"PlayerAimAssist.GetRotationDelta has {method.MethodSig.Params.Count} parameters, expected 3 — the game version may have changed.");
+                $"PlayerAimAssist.GetRotationDelta has {method.MethodSig.Params.Count} parameters, expected 3 - the game version may have changed.");
 
         var body = method.Body;
         var delta = new Local(refs.Vector2Sig);
@@ -156,7 +156,7 @@ internal static class Injector
             if (string.Equals(candidate.FullName, typeName, StringComparison.Ordinal)) { type = candidate; break; }
 
         if (type is null)
-            throw new PatchException($"'{typeName}' not found — is this the right Assembly-CSharp.dll?");
+            throw new PatchException($"'{typeName}' not found - is this the right Assembly-CSharp.dll?");
 
         var method = type.FindMethod(methodName)
                      ?? throw new PatchException($"'{typeName}.{methodName}' not found.");
